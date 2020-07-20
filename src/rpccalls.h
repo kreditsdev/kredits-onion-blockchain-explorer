@@ -3,10 +3,10 @@
 //
 
 
-#ifndef CROWLOK_RPCCALLS_H
-#define CROWLOK_RPCCALLS_H
+#ifndef CROWXKR_RPCCALLS_H
+#define CROWXKR_RPCCALLS_H
 
-#include "loki_headers.h"
+#include "kredits_headers.h"
 
 #include <mutex>
 #include <utility>
@@ -47,8 +47,8 @@ struct has_destructor
 
 namespace cryptonote
 {
-// declare struct in loki's cryptonote namespace.
-// loki should provide definition for this,
+// declare struct in kredits's cryptonote namespace.
+// kredits should provide definition for this,
 // but we need to have it declared as we are going to
 // check if its definition exist or not. depending on this
 // we decide what gets to be defined as
@@ -56,7 +56,7 @@ namespace cryptonote
 struct COMMAND_RPC_GET_ALT_BLOCKS_HASHES;
 }
 
-namespace lokeg
+namespace xkreg
 {
 
 using namespace cryptonote;
@@ -85,7 +85,7 @@ public:
              uint64_t _timeout = 200000);
 
     bool
-    connect_to_loki_daemon();
+    connect_to_kredits_daemon();
 
     uint64_t
     get_current_height();
@@ -134,7 +134,7 @@ public:
         {
             std::lock_guard<std::mutex> guard(m_daemon_rpc_mutex);
 
-            if (!connect_to_loki_daemon())
+            if (!connect_to_kredits_daemon())
             {
                 cerr << "get_alt_blocks: not connected to daemon" << endl;
                 return false;
@@ -160,14 +160,14 @@ public:
 
             if (!err.empty())
             {
-                cerr << "Error connecting to Loki daemon due to "
+                cerr << "Error connecting to Kredits daemon due to "
                      << err << endl;
                 return false;
             }
         }
         else
         {
-            cerr << "Error connecting to Loki daemon at "
+            cerr << "Error connecting to Kredits daemon at "
                  << daemon_url << endl;
             return false;
         }
@@ -209,4 +209,4 @@ public:
 
 
 
-#endif //CROWLOK_RPCCALLS_H
+#endif //CROWXKR_RPCCALLS_H

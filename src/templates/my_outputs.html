@@ -31,12 +31,12 @@
 
     {{^tx_prove}}
         <p>Checking which outputs belong to the given address and viewkey</p>
-        <p>Address: {{lok_address}}</p>
+        <p>Address: {{xkr_address}}</p>
         <p>Viewkey: {{viewkey}}</p>
     {{/tx_prove}}
     {{#tx_prove}}
         <p>Prove that you send this tx to the given address</p>
-        <p>Address: {{lok_address}}</p>
+        <p>Address: {{xkr_address}}</p>
         <p>TX Private Key: {{viewkey}}</p>
     {{/tx_prove}}
 
@@ -68,9 +68,9 @@
         </table>
 
         <p>
-            Sum LOK from matched outputs (i.e., incoming LOK):
+            Sum XKR from matched outputs (i.e., incoming XKR):
             {{#found_our_outputs}}
-                {{sum_lok}}
+                {{sum_xkr}}
             {{/found_our_outputs}}
             {{^found_our_outputs}}
                 0.000000000000
@@ -140,7 +140,7 @@
 
         </div>
         <h3>
-            Sum LOK from matched and marked by * ring member's outputs: {{sum_mixin_lok}}
+            Sum XKR from matched and marked by * ring member's outputs: {{sum_mixin_xkr}}
             <br/>
             <span> Possible spending is:
                 {{possible_spending}} (tx fee included)
@@ -153,7 +153,7 @@
                <br/>
                <span style="font-size: 14px">
                  Number of possible our mixins is {{no_all_possible_mixins}}
-                      for {{all_possible_mixins_amount}} lok
+                      for {{all_possible_mixins_amount}} xkr
                       (amount as uint64).
                </span>
         </h3>

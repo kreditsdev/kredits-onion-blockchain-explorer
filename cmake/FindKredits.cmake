@@ -2,8 +2,8 @@
 # CMake helper for the majority of the cpp-ethereum modules.
 #
 # This module defines
-#     LOKI_XXX_LIBRARIES, the libraries needed to use ethereum.
-#     LOKI_FOUND, If false, do not try to use ethereum.
+#     KREDITS_XXX_LIBRARIES, the libraries needed to use ethereum.
+#     KREDITS_FOUND, If false, do not try to use ethereum.
 #
 # File addetped from cpp-ethereum
 #
@@ -32,7 +32,7 @@ set(LIBS common;blocks;cryptonote_basic;cryptonote_core;multisig;randomx;
 		cryptonote_protocol;daemonizer;mnemonics;epee;lmdb;device;
 		blockchain_db;ringct;wallet;cncrypto;easylogging;version;checkpoints)
 
-    set(LOK_INCLUDE_DIRS "${CPP_LOKI_DIR}")
+    set(XKR_INCLUDE_DIRS "${CPP_KREDITS_DIR}")
 
 # if the project is a subset of main cpp-ethereum project
 # use same pattern for variables as Boost uses
@@ -41,38 +41,38 @@ foreach (l ${LIBS})
 
 	string(TOUPPER ${l} L)
 
-	find_library(LOK_${L}_LIBRARY
+	find_library(XKR_${L}_LIBRARY
 		NAMES ${l}
 		PATHS ${CMAKE_LIBRARY_PATH}
 		PATH_SUFFIXES "/src/${l}" "/src/" "/external/db_drivers/lib${l}" "/lib" "/src/crypto" "/contrib/epee/src" "/external/easylogging++/" "/external/randomx/"
 		NO_DEFAULT_PATH
 	)
 
-	set(LOK_${L}_LIBRARIES ${LOK_${L}_LIBRARY})
+	set(XKR_${L}_LIBRARIES ${XKR_${L}_LIBRARY})
 
-    message(STATUS FindLoki " LOK_${L}_LIBRARIES ${LOK_${L}_LIBRARY}")
+    message(STATUS FindKredits " XKR_${L}_LIBRARIES ${XKR_${L}_LIBRARY}")
 
 	add_library(${l} STATIC IMPORTED)
-	set_property(TARGET ${l} PROPERTY IMPORTED_LOCATION ${LOK_${L}_LIBRARIES})
+	set_property(TARGET ${l} PROPERTY IMPORTED_LOCATION ${XKR_${L}_LIBRARIES})
 
 endforeach()
 
-if (EXISTS ${LOKI_BUILD_DIR}/src/ringct/libringct_basic.a)
-	message(STATUS FindLoki " found libringct_basic.a")
+if (EXISTS ${KREDITS_BUILD_DIR}/src/ringct/libringct_basic.a)
+	message(STATUS FindKredits " found libringct_basic.a")
 	add_library(ringct_basic STATIC IMPORTED)
 	set_property(TARGET ringct_basic
-		PROPERTY IMPORTED_LOCATION ${LOKI_BUILD_DIR}/src/ringct/libringct_basic.a)
+		PROPERTY IMPORTED_LOCATION ${KREDITS_BUILD_DIR}/src/ringct/libringct_basic.a)
 endif()
 
 
-message(STATUS ${LOKI_SOURCE_DIR}/build)
+message(STATUS ${KREDITS_SOURCE_DIR}/build)
 
-# include loki headers
+# include kredits headers
 include_directories(
-    ${LOKI_SOURCE_DIR}/src
-    ${LOKI_SOURCE_DIR}/external
-    ${LOKI_SOURCE_DIR}/build
-    ${LOKI_SOURCE_DIR}/external/easylogging++
-    ${LOKI_SOURCE_DIR}/contrib/epee/include
-    ${LOKI_SOURCE_DIR}/external/loki-mq
-    ${LOKI_SOURCE_DIR}/external/db_drivers/liblmdb)
+    ${KREDITS_SOURCE_DIR}/src
+    ${KREDITS_SOURCE_DIR}/external
+    ${KREDITS_SOURCE_DIR}/build
+    ${KREDITS_SOURCE_DIR}/external/easylogging++
+    ${KREDITS_SOURCE_DIR}/contrib/epee/include
+    ${KREDITS_SOURCE_DIR}/external/kredits-mq
+    ${KREDITS_SOURCE_DIR}/external/db_drivers/liblmdb)

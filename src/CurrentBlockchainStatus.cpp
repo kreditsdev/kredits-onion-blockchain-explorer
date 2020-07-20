@@ -10,7 +10,7 @@
 #include <mutex>
 #include <atomic>
 
-namespace lokeg
+namespace xkreg
 {
 
 using namespace std;
@@ -23,16 +23,16 @@ CurrentBlockchainStatus::set_blockchain_variables(MicroCore* _mcore,
 }
 
 using BlockHeight = uint64_t;
-uint64_t const founders_locked_loki            = 1215000 * COIN;
-uint64_t const seed_locked_loki                = 581000 * COIN;
-uint64_t const half_seed_locked_loki           = seed_locked_loki * COIN / 2;
-static std::map<BlockHeight, uint64_t> time_locked_loki =
+uint64_t const founders_locked_kredits            = 1215000 * COIN;
+uint64_t const seed_locked_kredits                = 581000 * COIN;
+uint64_t const half_seed_locked_kredits           = seed_locked_kredits * COIN / 2;
+static std::map<BlockHeight, uint64_t> time_locked_kredits =
 {
     {0,      871500 * COIN},
-    {69456,  founders_locked_loki + seed_locked_loki},
-    {134079, founders_locked_loki + seed_locked_loki},
-    {198639, founders_locked_loki + seed_locked_loki},
-    {263423, founders_locked_loki + half_seed_locked_loki}
+    {69456,  founders_locked_kredits + seed_locked_kredits},
+    {134079, founders_locked_kredits + seed_locked_kredits},
+    {198639, founders_locked_kredits + seed_locked_kredits},
+    {263423, founders_locked_kredits + half_seed_locked_kredits}
 };
 
 void
@@ -171,12 +171,12 @@ CurrentBlockchainStatus::calculate_emission_in_blocks(uint64_t start_blk, uint64
 
       if (start_blk == 0)
       {
-        for (auto const &it : time_locked_loki)
+        for (auto const &it : time_locked_kredits)
             emission_calculated.circulating_supply -= it.second;
       }
 
-      auto unlock_it = time_locked_loki.find(start_blk);
-      if (unlock_it != time_locked_loki.end())
+      auto unlock_it = time_locked_kredits.find(start_blk);
+      if (unlock_it != time_locked_kredits.end())
           unlocked += unlock_it->second;
     }
 
@@ -212,7 +212,7 @@ CurrentBlockchainStatus::load_current_emission_amount()
 {
     string emmision_saved_file = get_output_file_path().string();
 
-    string last_saved_emmision = lokeg::read(emmision_saved_file);
+    string last_saved_emmision = xkreg::read(emmision_saved_file);
 
     if (last_saved_emmision.empty())
     {
@@ -320,7 +320,7 @@ CurrentBlockchainStatus::is_thread_running()
    return is_running;
 }
 
-bf::path CurrentBlockchainStatus::blockchain_path {"/home/mwo/.loki/lmdb"};
+bf::path CurrentBlockchainStatus::blockchain_path {"/home/mwo/.kredits/lmdb"};
 
 cryptonote::network_type CurrentBlockchainStatus::nettype {cryptonote::network_type::MAINNET};
 
@@ -340,5 +340,5 @@ boost::thread      CurrentBlockchainStatus::m_thread;
 atomic<bool>     CurrentBlockchainStatus::is_running {false};
 
 Blockchain*       CurrentBlockchainStatus::core_storage {nullptr};
-lokeg::MicroCore*  CurrentBlockchainStatus::mcore {nullptr};
+xkreg::MicroCore*  CurrentBlockchainStatus::mcore {nullptr};
 }

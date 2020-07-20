@@ -2,8 +2,8 @@
 // Created by mwo on 28/05/17.
 //
 
-#ifndef LOKBLOCKS_MEMPOOLSTATUS_H
-#define LOKBLOCKS_MEMPOOLSTATUS_H
+#ifndef XKRBLOCKS_MEMPOOLSTATUS_H
+#define XKRBLOCKS_MEMPOOLSTATUS_H
 
 
 #include "MicroCore.h"
@@ -16,7 +16,7 @@
 #include <mutex>
 #include <atomic>
 
-namespace lokeg
+namespace xkreg
 {
 
 struct MempoolStatus
@@ -41,8 +41,8 @@ struct MempoolStatus
         string fee_micro_str;
         string payed_for_kB_str;
         string payed_for_kB_micro_str;
-        string lok_inputs_str;
-        string lok_outputs_str;
+        string xkr_inputs_str;
+        string xkr_outputs_str;
         string timestamp_str;
         string txsize;
 
@@ -174,4 +174,4 @@ struct MempoolStatus
 };
 
 }
-#endif //LOKBLOCKS_MEMPOOLSTATUS_H
+#endif //XKRBLOCKS_MEMPOOLSTATUS_H

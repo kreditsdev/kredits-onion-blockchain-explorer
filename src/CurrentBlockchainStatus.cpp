@@ -23,16 +23,12 @@ CurrentBlockchainStatus::set_blockchain_variables(MicroCore* _mcore,
 }
 
 using BlockHeight = uint64_t;
-uint64_t const founders_locked_kredits            = 1215000 * COIN;
-uint64_t const seed_locked_kredits                = 581000 * COIN;
-uint64_t const half_seed_locked_kredits           = seed_locked_kredits * COIN / 2;
+uint64_t const founders_locked_kredits            = 1 * COIN;
+uint64_t const seed_locked_kredits                = 1 * COIN;
+uint64_t const half_seed_locked_kredits           = seed_locked_kredits * COIN / 1;
 static std::map<BlockHeight, uint64_t> time_locked_kredits =
 {
-    {0,      871500 * COIN},
-    {69456,  founders_locked_kredits + seed_locked_kredits},
-    {134079, founders_locked_kredits + seed_locked_kredits},
-    {198639, founders_locked_kredits + seed_locked_kredits},
-    {263423, founders_locked_kredits + half_seed_locked_kredits}
+    {0,      859 * COIN}
 };
 
 void
